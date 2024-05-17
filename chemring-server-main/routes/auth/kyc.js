@@ -14,6 +14,8 @@ mongoose.connect("mongodb+srv://Harcourt:eckankar2757101@testcluster.hlwy0.gcp.m
 // Create a MongoDB model for storing image URLs
 const Image = mongoose.model('Image', {
   imageUrl: String,
+  owner:String,
+  docNum:String,
 });
 
 // Middleware to parse JSON in requests
@@ -22,10 +24,10 @@ router.use(bodyParser.json());
 // Endpoint to store image URL
 router.post('/kyc', async (req, res) => {
   try {
-    const { imageUrl } = req.body;
+    const { imageUrl,name,docNum } = req.body;
 
     // Create a new document in the 'images' collection
-    const image = new Image({ imageUrl });
+    const image = new Image({ imageUrl,name,docNum });
     await image.save();
 
     res.status(201).json({ message: 'Image URL stored successfully' });
