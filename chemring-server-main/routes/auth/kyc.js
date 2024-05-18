@@ -24,10 +24,10 @@ router.use(bodyParser.json());
 // Endpoint to store image URL
 router.post('/kyc', async (req, res) => {
   try {
-    const { imageUrl,name,docNum } = req.body;
+    const { imageUrl,owner,docNum } = req.body;
 
     // Create a new document in the 'images' collection
-    const image = new Image({ imageUrl,name,docNum });
+    const image = new Image({ imageUrl,owner,docNum });
     await image.save();
 
     res.status(201).json({ message: 'Image URL stored successfully' });
