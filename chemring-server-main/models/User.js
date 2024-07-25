@@ -28,6 +28,10 @@ const UsersSchema = new mongoose.Schema({
     type: String,
     
   },
+  trader: {
+    type: String,
+    
+  },
   referralCode:{
     type:String,
   },
